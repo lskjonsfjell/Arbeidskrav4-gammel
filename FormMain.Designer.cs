@@ -33,13 +33,13 @@ namespace Arbeidskrav1
             System.Windows.Forms.Label area_numberLabel;
             System.Windows.Forms.Label manufactor_IdLabel;
             System.Windows.Forms.Label computer_IdLabel;
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.lIGHT_MEASURE1DataSet = new Arbeidskrav1.LIGHT_MEASURE1DataSet();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -117,6 +117,7 @@ namespace Arbeidskrav1
             this.comboBox_BitRate = new System.Windows.Forms.ComboBox();
             this.comboBox_ComPorts = new System.Windows.Forms.ComboBox();
             this.tabControlMain = new System.Windows.Forms.TabControl();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             area_numberLabel = new System.Windows.Forms.Label();
             manufactor_IdLabel = new System.Windows.Forms.Label();
             computer_IdLabel = new System.Windows.Forms.Label();
@@ -334,25 +335,25 @@ namespace Arbeidskrav1
             // 
             // chart2
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart2.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart2.Legends.Add(legend3);
             this.chart2.Location = new System.Drawing.Point(400, 17);
             this.chart2.Name = "chart2";
-            series1.BorderWidth = 2;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Legend = "Legend1";
-            series1.Name = "Scaled data";
-            this.chart2.Series.Add(series1);
+            series3.BorderWidth = 2;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.Name = "Scaled data";
+            this.chart2.Series.Add(series3);
             this.chart2.Size = new System.Drawing.Size(363, 306);
             this.chart2.TabIndex = 501;
             this.chart2.TabStop = false;
             this.chart2.Text = "chart2";
-            title1.DockedToChartArea = "ChartArea1";
-            title1.Name = "Title1";
-            this.chart2.Titles.Add(title1);
+            title2.DockedToChartArea = "ChartArea1";
+            title2.Name = "Title1";
+            this.chart2.Titles.Add(title2);
             // 
             // buttonSaveScaled
             // 
@@ -465,19 +466,19 @@ namespace Arbeidskrav1
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea4.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chart1.Legends.Add(legend4);
             this.chart1.Location = new System.Drawing.Point(400, 17);
             this.chart1.Name = "chart1";
-            series2.BorderWidth = 3;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.MarkerSize = 10;
-            series2.Name = "Raw data";
-            this.chart1.Series.Add(series2);
+            series4.BorderWidth = 3;
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Legend = "Legend1";
+            series4.MarkerSize = 10;
+            series4.Name = "Raw data";
+            this.chart1.Series.Add(series4);
             this.chart1.Size = new System.Drawing.Size(363, 300);
             this.chart1.TabIndex = 0;
             this.chart1.TabStop = false;
@@ -630,6 +631,7 @@ namespace Arbeidskrav1
             this.textBoxTagName.Name = "textBoxTagName";
             this.textBoxTagName.Size = new System.Drawing.Size(100, 20);
             this.textBoxTagName.TabIndex = 5;
+            this.textBoxTagName.MouseHover += new System.EventHandler(this.textBoxTagName_MouseHover);
             // 
             // label13
             // 
@@ -982,6 +984,7 @@ namespace Arbeidskrav1
         private System.Windows.Forms.ComboBox comboBox_BitRate;
         private System.Windows.Forms.ComboBox comboBox_ComPorts;
         private System.Windows.Forms.TabControl tabControlMain;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

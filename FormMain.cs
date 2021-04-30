@@ -163,6 +163,9 @@ namespace Arbeidskrav1
                     scaledData = scaledData.Replace(".", ",");
                     var textBoxURVTextFormated = textBoxURV.Text.Replace(".", ",");
                     var textBoxLRVTextFormated = textBoxLRV.Text.Replace(".", ",");
+                    var textboxAlarmLowTextFormat = textBoxAlarmLow.Text.Replace(".", ",");
+                    var textboxAlarmHighTextFormat = textBoxAlarmHigh.Text.Replace(".", ",");
+
                     SqlConnection connection = new SqlConnection(connectLight_Measure1);
 
                     string sqlInsertQuery = "INSERT INTO Measurment_AI (Scaled_values,Tagname) VALUES (@Scaled_values, @Tagname)";
@@ -171,10 +174,10 @@ namespace Arbeidskrav1
                     double.TryParse(scaledData, out double scaledVals);
                     double.TryParse(textBoxURVTextFormated, out double URVNumber);
                     double.TryParse(textBoxLRVTextFormated, out double LRVNumber);
+                    double.TryParse(textboxAlarmLowTextFormat, out double AlarmLowNumber);
+                    double.TryParse(textboxAlarmHighTextFormat, out double AlarmHighNumber);
 
-                    //var URVNumber = double.Parse(textBoxURV.Text, System.Globalization.CultureInfo.InvariantCulture);
-                    //var LRVNumber = double.Parse(textBoxLRV.Text, System.Globalization.CultureInfo.InvariantCulture);
-                    //var scaledVals = double.Parse(scaledData, System.Globalization.CultureInfo.InvariantCulture);
+
 
 
                     connection.Open();
@@ -192,13 +195,34 @@ namespace Arbeidskrav1
                         command.ExecuteNonQuery();
 
                         command.Parameters.Clear();
+                        toolStripStatusLabel1.Text = "Reading scaled data and writing to database";
                     }
-                    else
+                    else if (scaledVals > URVNumber || scaledVals < LRVNumber)
                     {
                         toolStripStatusLabel1.Text = "Data out of range";
                     }
+                if (scaledVals >= AlarmHighNumber)
+                {
+                    toolStripStatusLabelStatusRead.Text = "Alarm high";
 
-                    
+                }
+
+                if (scaledVals <= AlarmLowNumber)
+                {
+                    toolStripStatusLabelStatusRead.Text = "Alarm Low";
+
+                }
+
+                if (scaledVals < AlarmHighNumber && scaledVals > AlarmLowNumber)
+                {
+                        toolStripStatusLabelStatusRead.Text = "OK";
+                }
+
+
+
+
+
+
                 }
                 timerChartScaled.Enabled = true;
                 timerRecievedScaled.Enabled = false;
@@ -271,7 +295,7 @@ namespace Arbeidskrav1
 
                         if (listBoxScaled.Items.Count > 0)
                         {
-                            toolStripStatusLabel1.Text = "Reading scaled data and writing to database";
+                            //toolStripStatusLabel1.Text = "Reading scaled data and writing to database";
                         }
 
                         
@@ -327,6 +351,7 @@ namespace Arbeidskrav1
                 checkBoxScaledVals.Checked = false;
                 checkBoxScaledVals.Enabled = true;
                 checkBoxRawVals.Enabled = true;
+                toolStripStatusLabelStatusRead.Visible = false;
 
 
 
@@ -473,23 +498,25 @@ namespace Arbeidskrav1
                         toolStripStatusLabelStatusRead.Text = "OK";
                     }
 
-                 
-                    else if (convertStatus == 2)
+                    if (convertStatus == 2)
                     {
                         toolStripStatusLabelStatusRead.Text = "Alarm low";
                     }
-                    else if (convertStatus == 3)
+
+                    if (convertStatus == 3)
                     {
                         toolStripStatusLabelStatusRead.Text = "Alarm High";
                     }
 
-                
-            else
-            {
-                    
-                    toolStripStatusLabelStatusRead.Text = "Fail";
-            }
+                    if (convertStatus == 1)
+                    {
+                        toolStripStatusLabelStatusRead.Text = "Fail";
+                    }
 
+
+
+
+                
             }
 
         }
@@ -747,6 +774,11 @@ namespace Arbeidskrav1
             {
                 MessageBox.Show("Fill in all data in configuration");
             }
+        }
+
+        private void textBoxTagName_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Add config to database when entering new Tagname", textBoxTagName);
         }
     }
 }
